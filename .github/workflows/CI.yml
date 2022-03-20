@@ -48,11 +48,11 @@ jobs:
 
     - name: Build
       run: |
-        go build -mod=mod -v -a -tags netgo -ldflags "-X 'main.shard.Version=${{needs.pre_flight.outputs.new_tag}}' -extldflags '-static'" ${{ env.BUILD_PATH }}
+        go build -mod=mod -v -a -tags netgo -ldflags "-X 'main.version=${{needs.pre_flight.outputs.new_tag}}' -extldflags '-static'" ${{ env.BUILD_PATH }}
     
     - uses: actions/upload-artifact@v2
       with:
-        name: build
+        name: buildS
         path: ./${{ env.BINARY }} 
 
     - name: Test
