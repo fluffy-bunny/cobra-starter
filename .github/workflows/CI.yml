@@ -35,6 +35,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: [pre_flight]
     steps:
+    - name: Echo Tags
+      run: |
+       echo new_tag: ${{needs.pre_flight.outputs.new_tag}} 
+       echo changelog: ${{needs.pre_flight.outputs.changelog}}
     - uses: actions/checkout@v2
 
     - name: Set up Go
@@ -44,7 +48,7 @@ jobs:
 
     - name: Build
       run: |
-        go build -mod=mod -v -a -tags netgo -ldflags "-X 'main.shard.Version=${{ steps.tag_version.outputs.new_tag }}' -extldflags '-static'" ${{ env.BUILD_PATH }}
+        go build -mod=mod -v -a -tags netgo -ldflags "-X 'main.shard.Version=${{needs.pre_flight.outputs.new_tag}}' -extldflags '-static'" ${{ env.BUILD_PATH }}
     
     - uses: actions/upload-artifact@v2
       with:
