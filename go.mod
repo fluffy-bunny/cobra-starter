@@ -1,4 +1,4 @@
-module cobra-starter
+module cobra_starter
 
 go 1.18
 

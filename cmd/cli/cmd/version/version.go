@@ -7,7 +7,7 @@ package version
 import (
 	"fmt"
 
-	"cobra-starter/cmd/cli/shared"
+	"cobra_starter/cmd/cli/shared"
 
 	"github.com/spf13/cobra"
 )
