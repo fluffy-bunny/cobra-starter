@@ -14,6 +14,7 @@ on:
 env:
   BINARY: 'cli'
   GO_VERSION: '1.18'
+  BUILD_PATH: './cmd/cli'
   
 jobs:
   pre_flight:
@@ -42,7 +43,7 @@ jobs:
 
     - name: Build
       run: |
-        go build -mod=mod -v -a -tags netgo -ldflags "-X 'main.shard.Version=${{ steps.tag_version.outputs.new_tag }}' -extldflags '-static'" ./cmd/server
+        go build -mod=mod -v -a -tags netgo -ldflags "-X 'main.shard.Version=${{ steps.tag_version.outputs.new_tag }}' -extldflags '-static'" ${{ env.BUILD_PATH }}
     
     - uses: actions/upload-artifact@v2
       with:
