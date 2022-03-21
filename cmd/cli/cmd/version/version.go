@@ -8,15 +8,17 @@ import (
 	"fmt"
 
 	"cobra_starter/cmd/cli/shared"
+	"cobra_starter/internal/cobra_utils"
 
 	"github.com/spf13/cobra"
 )
 
 // versionCmd represents the version command
 var versionCmd = &cobra.Command{
-	Use:   "version",
-	Short: "version of the cli",
-	Long:  ``,
+	Use:               "version",
+	Short:             "version of the cli",
+	Long:              ``,
+	PersistentPreRunE: cobra_utils.ParentPersistentPreRunE,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println(shared.Version)
 	},

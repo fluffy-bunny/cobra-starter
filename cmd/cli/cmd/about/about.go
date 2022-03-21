@@ -8,14 +8,16 @@ import (
 	"fmt"
 
 	"cobra_starter/cmd/cli/shared"
+	"cobra_starter/internal/cobra_utils"
 
 	"github.com/spf13/cobra"
 )
 
 // aboutCmd represents the about command
 var aboutCmd = &cobra.Command{
-	Use:   "about",
-	Short: "A brief description of your command",
+	Use:               "about",
+	PersistentPreRunE: cobra_utils.ParentPersistentPreRunE,
+	Short:             "A brief description of your command",
 	Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
 
